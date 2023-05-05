@@ -6,23 +6,28 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:38:47 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/05 12:12:49 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/05 17:38:01 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+int	exit_program(void)
+{
+	exit(0);
+}
 
 void	setup(t_mlx *mlx)
 {
 	init_graphics_context(mlx);
 }
 
-void	routines(t_mlx *mlx)
+int	routines(t_mlx *mlx)
 {
 	mlx_clear_window(mlx->mlx, mlx->win);
 	mouse_events(mlx);
 	display_board(mlx);
-	mlx_loop(mlx->mlx);
+	return (0);
 }
 
 int	main(void)
@@ -31,7 +36,9 @@ int	main(void)
 
 	setup(&mlx);
 	display_board(&mlx);
-	routines(&mlx);
+	mlx_loop_hook(mlx.mlx, routines, &mlx);
+	mlx_hook(mlx.win, X_EVENT_KEY_EXIT, 0, exit_program, 0);
+	mlx_loop(mlx.mlx);
 	return (0);
 }
 
