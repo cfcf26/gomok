@@ -6,7 +6,7 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 22:38:47 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/05 17:38:01 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/06 01:44:22 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,20 @@ void	setup(t_mlx *mlx)
 
 int	routines(t_mlx *mlx)
 {
+	int	winner;
+
 	mlx_clear_window(mlx->mlx, mlx->win);
 	mouse_events(mlx);
 	display_board(mlx);
+	winner = check_winner(mlx);
+	if (winner != EMPTY)
+	{
+		if (winner == BLACKSTONE)
+			printf("BLACKSTONE wins!\n");
+		else
+			printf("WHITESTONE wins!\n");
+		exit(0);
+	}
 	return (0);
 }
 

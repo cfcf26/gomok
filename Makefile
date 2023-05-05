@@ -6,7 +6,7 @@
 #    By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 02:58:47 by ekwak             #+#    #+#              #
-#    Updated: 2023/05/05 11:57:19 by ekwak            ###   ########.fr        #
+#    Updated: 2023/05/06 01:31:29 by ekwak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_FILES = main.c \
 			graphics/display.c \
 			graphics/init_graphics_context.c \
 			graphics/mouse_events.c \
+			rules/check_winner.c \
 			#utils/init_board.c \
 
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)

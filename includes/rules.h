@@ -6,11 +6,14 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 00:45:15 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/05 00:45:32 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/06 01:31:58 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RULES_H
 # define RULES_H
 
+# include "utils.h"
+
+int	check_winner(t_mlx *mlx);
 #endif

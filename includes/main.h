@@ -6,7 +6,7 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:47:55 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/05 12:12:25 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/06 01:30:06 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 # include "utils.h"
 # include "graphics.h"
+# include "rules.h"
 
 #endif
