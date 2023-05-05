@@ -6,11 +6,28 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:01:16 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/05 03:19:14 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/05 12:12:31 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
+
+static void	init_map(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < BOARD_SIZE)
+	{
+		j = -1;
+		while (++j < BOARD_SIZE)
+		{
+			mlx->map[i][j] = EMPTY;
+			mlx->selected[i][j] = EMPTY;
+		}
+	}
+}
 
 void	init_graphics_context(t_mlx *mlx)
 {
@@ -26,4 +43,6 @@ void	init_graphics_context(t_mlx *mlx)
 	mlx->board = mlx_xpm_file_to_image(mlx->mlx, BOARD_PATH, &w, &h);
 	mlx->forbidden = mlx_xpm_file_to_image(mlx->mlx, FORBIDDEN_PATH, &w, &h);
 	mlx->select = mlx_xpm_file_to_image(mlx->mlx, SELECT_PATH, &w, &h);
+	mlx->turn = BLACKSTONE;
+	init_map(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 01:52:37 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/05 03:21:54 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/05 12:10:06 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@
 # define BLACKSTONE 1
 # define WHITESTONE 2
 # define FORBIDDEN 3
+# define SELECTED 4
 
-extern int	g_BOARD[BOARD_SIZE][BOARD_SIZE];
-extern int	g_SELECTED[BOARD_SIZE][BOARD_SIZE];
+# define MOUSE_BUTTON_LEFT 1
+# define MOTION_NOTIFY 8192
 
 typedef struct s_mlx
 {
@@ -40,6 +41,9 @@ typedef struct s_mlx
 	void	*board;
 	void	*forbidden;
 	void	*select;
+	int		map[BOARD_SIZE][BOARD_SIZE];
+	int		selected[BOARD_SIZE][BOARD_SIZE];
+	int		turn;
 }	t_mlx;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:48:53 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/05 02:37:18 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/05 11:54:58 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,5 @@
 # include <sys/time.h> // gettimeofday, ...
 # include "../minilibx_opengl_20191021/mlx.h" // mlx
 # include "models.h" // models
-
-void	init_board(void);
 
 #endif
