@@ -6,7 +6,7 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:08:03 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/06 02:15:56 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/06 14:05:41 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,83 +71,147 @@ static int	check_vertical(t_mlx *mlx, int player)
 	}
 	return (0);
 }
-
-static int check_diagonal_left_to_right(t_mlx *mlx, int player)
+static int	check_diagonal_left_to_right(t_mlx *mlx, int player)
 {
-	int i = 0, j, count;
+	int	i;
+	int	j;
+	int	count;
+	int	x;
+	int	y;
 
-	while (i < BOARD_SIZE)
+	i = 0;
+	j = 0;
+	while (++i < BOARD_SIZE - 4)
 	{
-		j = 0;
-		while (j < BOARD_SIZE)
+		count = 0;
+		x = i;
+		y = j;
+		while (x < BOARD_SIZE - 4 && y < BOARD_SIZE - 4)
 		{
-			count = 0;
-			int x = i;
-			int y = j;
-			while (x < BOARD_SIZE && y < BOARD_SIZE)
+			if (mlx->map[x][y] == player)
+				count++;
+			else
 			{
-				if (mlx->map[x][y] == player)
-					count++;
-				else
-					count = 0;
-				if (player == BLACKSTONE && count == 5 && (x == BOARD_SIZE - 1 || y == 0 || mlx->map[x + 1][y - 1] != BLACKSTONE))
+				if (player == BLACKSTONE && count > 5)
+					return (FOUL);
+				else if (player == BLACKSTONE && count == 5)
 					return (BLACKSTONE);
 				else if (player == WHITESTONE && count >= 5)
 					return (WHITESTONE);
-				x++;
-				y++;
+				count = 0;
 			}
-			j++;
+			x++;
+			y++;
 		}
-		i++;
+	}
+	i = 0;
+	j = -1;
+	while (++j < BOARD_SIZE - 4)
+	{
+		count = 0;
+		x = i;
+		y = j;
+		while (x < BOARD_SIZE - 4 && y < BOARD_SIZE - 4)
+		{
+			if (mlx->map[x][y] == player)
+				count++;
+			else
+			{
+				if (player == BLACKSTONE && count > 5)
+					return (FOUL);
+				else if (player == BLACKSTONE && count == 5)
+					return (BLACKSTONE);
+				else if (player == WHITESTONE && count >= 5)
+					return (WHITESTONE);
+				count = 0;
+			}
+			x++;
+			y++;
+		}
 	}
 	return (0);
 }
 
-static int check_diagonal_right_to_left(t_mlx *mlx, int player)
+static int	check_diagonal_right_to_left(t_mlx *mlx, int player)
 {
-	int i = 0, j, count;
+	int	i;
+	int	j;
+	int	count;
+	int	x;
+	int	y;
 
-	while (i < BOARD_SIZE)
+	i = 0;
+	j = BOARD_SIZE - 1;
+	while (++i < BOARD_SIZE - 4)
 	{
-		j = 0;
-		while (j < BOARD_SIZE)
+		count = 0;
+		x = i;
+		y = j;
+		while (x < BOARD_SIZE - 4 && y > 3)
 		{
-			count = 0;
-			int x = i;
-			int y = j;
-			while (x < BOARD_SIZE && y >= 0)
+			if (mlx->map[x][y] == player)
+				count++;
+			else
 			{
-				if (mlx->map[x][y] == player)
-					count++;
-				else
-					count = 0;
-				if (player == BLACKSTONE && count == 5 && (x == BOARD_SIZE - 1 || y == 0 || mlx->map[x + 1][y - 1] != BLACKSTONE))
+				if (player == BLACKSTONE && count > 5)
+					return (FOUL);
+				else if (player == BLACKSTONE && count == 5)
 					return (BLACKSTONE);
 				else if (player == WHITESTONE && count >= 5)
 					return (WHITESTONE);
-				x++;
-				y--;
+				count = 0;
 			}
-			j++;
+			x++;
+			y--;
 		}
-		i++;
+	}
+	i = 0;
+	j = BOARD_SIZE;
+	while (++j < BOARD_SIZE - 4)
+	{
+		count = 0;
+		x = i;
+		y = j;
+		while (x < BOARD_SIZE - 4 && y > 3)
+		{
+			if (mlx->map[x][y] == player)
+				count++;
+			else
+			{
+				if (player == BLACKSTONE && count > 5)
+					return (FOUL);
+				else if (player == BLACKSTONE && count == 5)
+					return (BLACKSTONE);
+				else if (player == WHITESTONE && count >= 5)
+					return (WHITESTONE);
+				count = 0;
+			}
+			x++;
+			y--;
+		}
 	}
 	return (0);
 }
-
-
 
 int	check_winner(t_mlx *mlx)
 {
 	int	player;
+	int	result;
 
+	result = 0;
 	player = (mlx->turn == BLACKSTONE) ? WHITESTONE : BLACKSTONE;
-	if (check_horizontal(mlx, player) || \
-		check_diagonal_left_to_right(mlx, player) || \
-		check_diagonal_right_to_left(mlx, player) || \
-		check_vertical(mlx, player))
-		return (player);
+	result = check_horizontal(mlx, player);
+	if (result)
+		return (result);
+	result = check_vertical(mlx, player);
+	if (result)
+		return (result);
+	result = check_diagonal_left_to_right(mlx, player);
+	if (result)
+		return (result);
+	result = check_diagonal_right_to_left(mlx, player);
+	if (result)
+		return (result);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ekwak <ekwak@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 01:52:37 by ekwak             #+#    #+#             */
-/*   Updated: 2023/05/05 17:38:05 by ekwak            ###   ########.fr       */
+/*   Updated: 2023/05/06 14:03:00 by ekwak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define WHITESTONE 2
 # define FORBIDDEN 3
 # define SELECTED 4
+# define FOUL -1
 
 # define MOUSE_BUTTON_LEFT 1
 # define MOTION_NOTIFY 8192
